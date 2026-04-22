@@ -1,0 +1,14 @@
+version: 1
+
+stack:
+  name: aws-ec2-s3-blueprint
+  terraform_version: 1.5.0
+
+  vcs:
+    provider: github
+    repository: your-repo-name
+
+  environment:
+    variables:
+      TF_VAR_env: dev
+      TF_VAR_owner: platform-team
