@@ -6,7 +6,7 @@ stack:
 
   vcs:
     provider: github
-    repository: your-repo-name
+    repository: varmanuk/spacelift-aws-blueprint
 
   environment:
     variables:
