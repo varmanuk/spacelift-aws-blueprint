@@ -1,11 +1,36 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 6.0"
+    }
+  }
+}
+
 provider "aws" {
   region = var.region
 }
 
+# Get latest AMI
+data "aws_ami" "amazon_linux" {
+  most_recent = true
+  owners      = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+  }
+}
+
+# Random suffix for S3
+resource "random_id" "suffix" {
+  byte_length = 4
+}
+
 # EC2 Instance
 resource "aws_instance" "example" {
-  ami           = "ami-0c55b159cbfafe1f0" # update for your region
-  instance_type = "t3.micro"
+  ami           = data.aws_ami.amazon_linux.id
+  instance_type = "t2.micro"
 
   tags = {
     Name    = "spacelift-ec2"
@@ -17,7 +42,7 @@ resource "aws_instance" "example" {
 
 # S3 Bucket
 resource "aws_s3_bucket" "bucket" {
-  bucket = "spacelift-demo-${var.env}"
+  bucket = "spacelift-demo-${var.env}-${random_id.suffix.hex}"
 
   tags = {
     env   = var.env

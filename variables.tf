@@ -7,5 +7,5 @@ variable "env" {
 }
 
 variable "owner" {
-  default = "platform-team"
+  default = "platform_team"
 }

@@ -11,4 +11,4 @@ stack:
   environment:
     variables:
       TF_VAR_env: dev
-      TF_VAR_owner: platform-team
+      TF_VAR_owner: platform_team
