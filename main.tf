@@ -30,10 +30,10 @@ resource "random_id" "suffix" {
 # EC2 Instance
 resource "aws_instance" "example" {
   ami           = data.aws_ami.amazon_linux.id
-  instance_type = "t2.micro"
+  instance_type = "t2.nano"
 
   tags = {
-    Name    = "spacelift-ec2"
+    Name    = "spacelift-ec2_drift-demo"
     env     = var.env
     owner   = var.owner
     testtag = "true"
