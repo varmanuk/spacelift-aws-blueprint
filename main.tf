@@ -22,10 +22,10 @@ data "aws_ami" "amazon_linux" {
   }
 }
 
-# Random suffix for S3
-resource "random_id" "suffix" {
-  byte_length = 4
-}
+# # Random suffix for S3
+# resource "random_id" "suffix" {
+#   byte_length = 4
+# }
 
 # # EC2 Instance
 # resource "aws_instance" "example" {
